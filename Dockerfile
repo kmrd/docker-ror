@@ -113,31 +113,12 @@ RUN service mysql start && \
 #       MYSQL_DATA_DIR=/var/lib/mysql \
 #       MYSQL_LOG_DIR=/var/log/mysq
 #       # MYSQL_RUN_DIR=/run/mysqld \
-#   
-#   
-#   
-#   RUN echo "mysql-server mysql-server/root_password password root" | debconf-set-selections && \
-#       echo "mysql-server mysql-server/root_password_again password root" | debconf-set-selections && \
-#       apt-get -y --fix-missing install \
-#         mysql-server
-#         # mysql-client
-#       # mysql_secure_install && \
-#       # mysqladmin -u root password root
-
-# RUN chown -R mysql:mysql /var/lib/mysql
-
-# VOLUME ["${MYSQL_DATA_DIR}", "${MYSQL_RUN_DIR}"]
 
 
 # Install PostgreSQL
 # RUN apt-get -y --fix-missing install \
 # 			postgresql \
 # 			postgresql-contrib
-
-
-
-
-# RUN /etc/init.d/mysql start
 
 
 
@@ -149,9 +130,10 @@ VOLUME /var/www/html
 EXPOSE 3000
 
 ADD entrypoint.sh /var/www/entrypoint.sh
-RUN dos2unix /var/www/entrypoint.sh
-RUN chmod +x /var/www/entrypoint.sh
+RUN dos2unix /var/www/entrypoint.sh && \
+    chmod +x /var/www/entrypoint.sh
 
 ENTRYPOINT ["/var/www/entrypoint.sh"]
+
 #CMD ["/bin/bash"]
 
