@@ -54,7 +54,8 @@ RUN apt-get -y --fix-missing install \
       libgdbm3 \
       libgdbm-dev \
       libpq-dev \
-      zsh
+      zsh \
+      nodejs
 
 
 RUN git clone https://github.com/sstephenson/rbenv.git /usr/local/rbenv \
